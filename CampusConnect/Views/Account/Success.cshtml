@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Success";
+}
+
+<h2>Success</h2>
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+else
+{
+    <p>Operation completed successfully.</p>
+}
+
+<a asp-controller="Account" asp-action="Welcome" class="btn btn-secondary">Back to Home</a>

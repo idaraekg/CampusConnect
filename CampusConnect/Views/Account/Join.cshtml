@@ -1,0 +1,33 @@
+﻿@model CampusConnect.Models.JoinModel
+
+@{
+    ViewData["Title"] = "Join CampusConnect";
+}
+
+<h2>Join CampusConnect</h2>
+
+<form asp-action="Join" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div>
+        <label asp-for="FirstName">First Name</label><br />
+        <input asp-for="FirstName" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div style="margin-top:10px;">
+        <label asp-for="LastName">Last Name</label><br />
+        <input asp-for="LastName" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div style="margin-top:15px;">
+        <button type="submit" class="btn btn-primary">Continue</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

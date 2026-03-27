@@ -1,0 +1,39 @@
+﻿@model CampusConnect.Models.CategoryModel
+
+@{
+    ViewData["Title"] = "Select Category";
+}
+
+<h2>Select Category</h2>
+
+<form asp-action="SelectCategory" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div>
+        <input type="radio" asp-for="SelectedCategory" value="Friendship" /> Friendship
+    </div>
+    <div>
+        <input type="radio" asp-for="SelectedCategory" value="Academics" /> Academics
+    </div>
+    <div>
+        <input type="radio" asp-for="SelectedCategory" value="Network" /> Network
+    </div>
+    <div>
+        <input type="radio" asp-for="SelectedCategory" value="Collaboration" /> Collaboration
+    </div>
+    <div>
+        <input type="radio" asp-for="SelectedCategory" value="Other" /> Other
+    </div>
+
+    <span asp-validation-for="SelectedCategory" class="text-danger"></span>
+
+    <div style="margin-top:15px;">
+        <button type="submit" class="btn btn-primary">Finish</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
