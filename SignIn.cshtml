@@ -1,0 +1,33 @@
+﻿@model CampusConnect.Models.SignInModel
+
+@{
+    ViewData["Title"] = "Sign In";
+}
+
+<h2>Sign In</h2>
+
+<form asp-action="SignIn" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div>
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div style="margin-top:10px;">
+        <label asp-for="Password"></label><br />
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div style="margin-top:15px;">
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

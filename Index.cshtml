@@ -1,0 +1,155 @@
+﻿@model List<CampusConnect.Models.User>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .home-container {
+        max-width: 420px;
+        margin: 30px auto;
+        background-color: #d9d9d9;
+        padding: 20px;
+        border-radius: 10px;
+        min-height: 700px;
+    }
+
+    .app-title {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .connected-box {
+        background: #cfcfcf;
+        border-radius: 20px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .connected-title {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .user-circles {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+    }
+
+    .user-circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #555;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+    .section-title {
+        font-weight: bold;
+        margin: 20px 0 10px 0;
+    }
+
+    .post-card {
+        background: #5a5a5a;
+        color: white;
+        border-radius: 25px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .post-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .post-info {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .bottom-nav {
+        margin-top: 20px;
+        background: #2f2f2f;
+        color: white;
+        display: flex;
+        justify-content: space-around;
+        padding: 12px 0;
+        border-radius: 10px;
+    }
+
+    .bottom-nav a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .success-message {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+</style>
+
+<div class="home-container">
+    <div class="app-title">CampusConnect</div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="success-message">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div class="connected-box">
+        <div class="connected-title">Connected</div>
+        <div class="user-circles">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var user in Model)
+                {
+                    var initials = $"{user.FirstName[0]}{user.LastName[0]}";
+                    <div class="user-circle">@initials</div>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="section-title">Campus Members</div>
+
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var user in Model)
+        {
+            <div class="post-card">
+                <div class="post-name">@user.FirstName @user.LastName</div>
+                <div class="post-info">Email: @user.Email</div>
+                <div class="post-info">Interest: @user.Category</div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="post-card">
+            <div class="post-name">No users yet</div>
+            <div class="post-info">Create an account to see members here.</div>
+        </div>
+    }
+
+    <div class="bottom-nav">
+        <a asp-controller="Home" asp-action="Index">Home</a>
+        <a href="#">+</a>
+        <a href="#">Explore</a>
+        <a href="#">Chat</a>
+        <a href="#">Profile</a>
+    </div>
+</div>
